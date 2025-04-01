@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { Container_extract_baster } from './stykes'
+import { FaCopy } from "react-icons/fa";
+
 
 function App() {
 
@@ -82,6 +84,7 @@ function App() {
                 <li>#</li>
                 <li>Milhar</li>
                 <li>Dezenas extraídas</li>
+                <li>Ação</li>
               </ul>
             </div>
             <div className='extract-area-item'>
@@ -101,6 +104,15 @@ function App() {
                           </span>
                         ))
                       }</li>
+                      <li>
+                        <button 
+                          className='copy-button'
+                          onClick={() => navigator.clipboard.writeText(item.dezenas.join(' '))}
+                        >
+                          <b>Copiar</b>
+                          <FaCopy />
+                        </button>
+                      </li>
                     </ul>
                   ))
                 ) : (

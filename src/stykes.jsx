@@ -23,7 +23,7 @@ export const Container_extract_baster = styled.div`
         flex-wrap: wrap;
         width: 100%;
         min-height: calc(100svh - 50px);
-        padding: 20px;
+        padding: 20px 10px;
         gap: 20px;
 
         .form-area {
@@ -109,7 +109,7 @@ export const Container_extract_baster = styled.div`
             flex-direction: column;
             min-width: 300px;
             height: 100%;
-            padding: 10px 20px 20px;
+            padding: 10px 10px 20px;
             background-color: insert rgb(235, 235, 235);
             border: solid 2px #ccc;
             border-radius: 5px;
@@ -167,6 +167,27 @@ export const Container_extract_baster = styled.div`
                             width: 80px;
                             border-right: solid 2px #ccc;
                         }
+
+                        li:nth-child(3) {
+                            width: 180px;
+                            border-right: solid 2px #ccc;
+
+                            @media screen and (max-width: 440px) {
+                                width: 100px;
+                                text-align: center;
+                            }
+                        }
+
+                        li:nth-child(4) {
+                            flex: 1;
+                            justify-content: flex-end;
+                            padding-right: 30px;
+
+                            @media screen and (max-width: 440px) {
+                                padding-right: 10px;
+                                padding-left: 10px;
+                            }
+                        }
                     }
                 }
 
@@ -179,7 +200,7 @@ export const Container_extract_baster = styled.div`
                     padding: 10px 0px 10px;
                     overflow: auto;
 
-                    @media screen and (max-width: 600px) {
+                    @media screen and (max-width: 440px) {
                         height: 55vh;
                     }
 
@@ -232,6 +253,10 @@ export const Container_extract_baster = styled.div`
                             font-weight: 900;
                             gap: 10px;
 
+                            @media screen and (max-width: 440px) {
+                                gap: 5px;
+                            }
+
                             span {
                                 display: flex;
                                 justify-content: center;
@@ -242,6 +267,11 @@ export const Container_extract_baster = styled.div`
                                 background-color: rgb(255, 255, 255);
                                 color: rgb(29, 48, 54);
                                 box-shadow: 1px 1.5px 8px rgba(0, 0, 0, 0.71);
+
+                                @media screen and (max-width: 440px) {
+                                    width: 25px;
+                                    height: 25px;
+                                }
                             }
                         }
                         
@@ -253,6 +283,52 @@ export const Container_extract_baster = styled.div`
                         li:nth-child(2) {
                             width: 80px;
                             border-right: solid 2px #ccc;
+                        }
+                        
+                        li:nth-child(3) {
+                            width: 180px;
+                            border-right: solid 2px #ccc;
+
+                            @media screen and (max-width: 440px) {
+                                width: 100px;
+                                text-align: center;
+                            }
+                        }
+                        
+                        li:nth-child(4) {
+                            flex: 1;
+                            justify-content: flex-end;
+                            padding-right: 10px;
+                        }
+                    }
+
+                    .copy-button {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 5px;
+                        gap: 5px;
+                        border-radius: 4px;
+                        border: none;
+                        background-color: rgb(255, 255, 255);
+                        color: rgb(29, 48, 54);
+                        font-size: 1rem;
+                        font-weight: 900;
+                        text-transform: uppercase;
+                        cursor: pointer;
+                        box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.64);
+                        transition: all .3s ease-in-out;
+
+                        @media screen and (max-width: 370px) {
+                            font-size: .8rem;
+                            b {
+                                display: none;
+                            }
+                        }
+
+                        &:hover {
+                            background-color: rgb(60, 98, 110);
+                            color: #fff;
                         }
                     }
                 }
