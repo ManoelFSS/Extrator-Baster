@@ -203,7 +203,6 @@ export const Container_extract_baster = styled.div`
                     width: 100%;
                     height: 45vh;
                     overflow: auto;
-                    border: solid 1px red;
 
 
                     &::-webkit-scrollbar {
