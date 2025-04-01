@@ -79,7 +79,7 @@ function App() {
                 <input 
                   type="button" 
                   value="Limpar" 
-                  onClick={() => {setDezenas([]); setText('')}}
+                  onClick={() => {setDezenas([]), setText(''), setResultados([])}}
                 />
               </div>
           </form>
@@ -117,7 +117,13 @@ function App() {
                       <li>
                         <button 
                           className='copy-button'
-                          onClick={() => navigator.clipboard.writeText(item.dezenas.join(' '))}
+                          onClick={() => {
+                            navigator.clipboard.writeText(item.dezenas.join(' '))
+                            document.querySelector('.copied').classList.add('active')
+                            setTimeout(() => {
+                              document.querySelector('.copied').classList.remove('active')
+                            }, 2000)
+                          }}
                         >
                           <b>Copiar</b>
                           <FaCopy />
@@ -167,7 +173,13 @@ function App() {
             <div className='extract-modal-footer'>
               <button 
                 className='copy-full-button'
-                onClick={() => navigator.clipboard.writeText(dezenas.join(' '))}
+                onClick={() => {
+                  navigator.clipboard.writeText(dezenas.join(' '))
+                  document.querySelector('.copied').classList.add('active')
+                  setTimeout(() => {
+                    document.querySelector('.copied').classList.remove('active')
+                  }, 2500)
+                }}
               >
                 <b>Copiar</b>
                 <FaCopy />
@@ -176,6 +188,7 @@ function App() {
           </div>
         </div>
       }
+      <p className='copied'>Copiado</p>
     </Container_extract_baster>
   )
 }

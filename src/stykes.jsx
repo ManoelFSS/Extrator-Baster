@@ -391,6 +391,25 @@ export const Container_extract_baster = styled.div`
             border-radius: 5px;
             padding: 10px;
             box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.64);
+            transition: all .3s ease-in-out;
+            animation: animate 1s ease forwards;
+
+            @keyframes animate {
+                0%, 20% {
+                    opacity: 0;
+                    margin-top: -20px;
+                }
+
+                75% {
+                    opacity: 1;
+                    margin: 0;
+                }
+
+                100% {
+                    opacity: 1;
+                    margin: 0;
+                }
+            }
 
             .extract-modal-header {
                 display: flex;
@@ -481,6 +500,34 @@ export const Container_extract_baster = styled.div`
                         color: #fff;
                     }
                 }
+            }
+        }
+    }
+
+    .copied {
+        padding: 5px 10px;
+        width: 100px;
+        text-align: center;
+        background-color: rgb(60, 98, 110);
+        color: #fff;
+        border-radius: 5px;
+        box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.64);
+        position: fixed;
+        top: 85px;
+        right: -200px;
+        z-index: 9999;
+    }
+
+    .active {
+        animation:animacopy  0.5s ease forwards;
+        
+        @keyframes animacopy {
+            0%, 20% {
+                right: -200px;
+            }
+            
+            100% {
+                right: 30px;
             }
         }
     }
