@@ -1,16 +1,18 @@
 import { useState } from 'react'
 import { Container_extract_baster } from './stykes'
 import { FaCopy } from "react-icons/fa";
+import { IoCloseCircleSharp } from "react-icons/io5";
 
 
 function App() {
 
+  const [resultados, setResultados] = useState([])
   const [dezenas, setDezenas] = useState([])
   const [text, setText] = useState('')
+  const [modal, setModal] = useState(false)
 
   const hendleSubmit = (e) => {
     e.preventDefault()
-
     // Remove espaços, traços e barras verticais
     const cleanedText = text.replace(/[\s\-\|,;.]/g, "");
     // Expressão para capturar grupos de 4 números
@@ -40,9 +42,17 @@ function App() {
       };
     });
   
-    console.log(extractedData);
-    setDezenas(extractedData)
+    setResultados(extractedData)
+    copyToClipboard(extractedData)
+
   };
+
+  const copyToClipboard = async (res) => {
+
+    const getDezenas = await res.map(item => item.dezenas).flat();
+    setDezenas(getDezenas)
+
+  }
 
 
   return (
@@ -89,15 +99,15 @@ function App() {
             </div>
             <div className='extract-area-item'>
 
-              { dezenas.length > 0 ? (
-                  dezenas.map((item) => (
+              { resultados.length > 0 ? (
+                  resultados.map((item) => (
                     <ul key={item.id}>
                       <li>{item.id}</li>
                       <li>{item.milhar}</li>
                       <li>{
-                        item.dezenas.map((dezena) => (
+                        item.dezenas.map((dezena, index) => (
                           <span 
-                            key={dezena}
+                            key={index}
                             className='dezena'
                           >
                             {dezena}
@@ -122,8 +132,50 @@ function App() {
 
             </div>
           </div>
+          <div className='extract-area-footer'>
+            { resultados.length > 0 &&
+              <button 
+                className='all-dezenas-button'
+                onClick={() => setModal(!modal)}
+              >
+              <b>Ver todas as dezenas</b>
+            </button>
+            }
+          </div>
         </section>
       </main>
+      { modal &&
+        <div className='extract-modal'>
+          <div className='extract-modal-area'>
+            <div className='extract-modal-header'>
+              <h3>Todas as dezenas</h3>
+              <IoCloseCircleSharp 
+                onClick={() => setModal(!modal)}
+                className='close-modal'
+              />
+            </div>
+            <div className='extract-modal-content'>
+              { dezenas.map((item, index) => (
+                <span 
+                  key={index}
+                  className='dezenas'
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+            <div className='extract-modal-footer'>
+              <button 
+                className='copy-full-button'
+                onClick={() => navigator.clipboard.writeText(dezenas.join(' '))}
+              >
+                <b>Copiar</b>
+                <FaCopy />
+              </button>
+            </div>
+          </div>
+        </div>
+      }
     </Container_extract_baster>
   )
 }
